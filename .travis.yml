@@ -3,21 +3,21 @@ services:
   - docker
 
 before_install:
-  - docker build -t pulkit/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t apulkit21/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run pulkit/react-test npm test -- --coverage
+  - docker run apulkit21/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t pulkit/multi-client ./client
-  - docker build -t pulkit/multi-nginx ./nginx
-  - docker build -t pulkit/multi-server ./server
-  - docker build -t pulkit/multi-worker ./worker
+  - docker build -t apulkit21/multi-client ./client
+  - docker build -t apulkit21/multi-nginx ./nginx
+  - docker build -t apulkit21/multi-server ./server
+  - docker build -t apulkit21/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push pulkit/multi-client
-  - docker push pulkit/multi-nginx
-  - docker push pulkit/multi-server
-  - docker push pulkit/multi-worker
+  - docker push apulkit21/multi-client
+  - docker push apulkit21/multi-nginx
+  - docker push apulkit21/multi-server
+  - docker push apulkit21/multi-worker
 
